@@ -1,0 +1,11 @@
+# Ignore generated files
+*~
+
+*.Plo
+*.Po
+
+build-host/
+build-target/
+tests/
+autom4te.cache/
+
