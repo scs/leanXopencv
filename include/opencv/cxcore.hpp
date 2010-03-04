@@ -70,10 +70,10 @@ template<typename _Tp> class CV_EXPORTS Point_;
 template<typename _Tp> class CV_EXPORTS Rect_;
 
 typedef std::string String;
-typedef std::basic_string<wchar_t> WString;
+typedef std::basic_string<char> WString;
 
-CV_EXPORTS string fromUtf16(const WString& str);
-CV_EXPORTS WString toUtf16(const string& str);
+//CV_EXPORTS string fromUtf16(const WString& str);
+//CV_EXPORTS WString toUtf16(const string& str);
 
 class CV_EXPORTS Exception
 {

@@ -1,0 +1,35 @@
+#! /bin/bash
+
+#this script builds the opencv for host and target. the outputs are in the folders build-target and build-host
+
+make clean || true
+
+target_dir=build-target
+host_dir=build-host
+
+cp_folders="3rdparty apps autotools data include interfaces samples src tests utils"
+
+# target
+rm -r $target_dir || true
+mkdir -p $target_dir
+cp * $target_dir
+cp -r $cp_folders $target_dir
+cd $target_dir
+./configure --host=bfin-uclinux --without-octave --without-gtk --without-v4l --without-carbon  --without-quicktime --without-1394libs --without-ffmpeg --without-python --without-swig --enable-static --disable-shared --disable-apps --disable-openmp LDFLAGS=-mfast-fp
+make
+cd ..
+
+
+
+# host
+rm -r $host_dir || true
+mkdir -p $host_dir
+cp * $host_dir
+cp -r $cp_folders $host_dir
+cd $host_dir
+./configure --without-octave --without-gtk --without-v4l --without-carbon --without-quicktime --without-1394libs --without-ffmpeg --without-python --without-swig --enable-static --disable-shared --disable-apps --disable-openmp
+make
+cd ..
+
+
+

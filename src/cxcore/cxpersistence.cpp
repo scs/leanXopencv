@@ -42,7 +42,7 @@
 
 #include "_cxcore.h"
 #include <ctype.h>
-#include <wchar.h>
+//#include <wchar.h>
 #include <zlib.h>
 
 /****************************************************************************************\
@@ -114,30 +114,6 @@ cv::string cv::FileStorage::getDefaultObjectName(const string& _filename)
 
 namespace cv
 {
-
-string fromUtf16(const WString& str)
-{
-    cv::AutoBuffer<char> _buf(str.size()*4 + 1);
-    char* buf = _buf;
-        
-    size_t sz = wcstombs(buf, str.c_str(), str.size());
-    if( sz == (size_t)-1 )
-        return string();
-    buf[sz] = '\0';
-    return string(buf);
-}
-
-WString toUtf16(const string& str)
-{
-    cv::AutoBuffer<wchar_t> _buf(str.size() + 1);
-    wchar_t* buf = _buf;
-        
-    size_t sz = mbstowcs(buf, str.c_str(), str.size());
-    if( sz == (size_t)-1 )
-        return WString();
-    buf[sz] = '\0';
-    return WString(buf);
-}
 
 }
 
